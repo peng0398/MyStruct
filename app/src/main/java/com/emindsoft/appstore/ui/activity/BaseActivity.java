@@ -1,19 +1,22 @@
 package com.emindsoft.appstore.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
-import com.emindsoft.appstore.AppComponent;
-import com.emindsoft.appstore.GithubClientApplication;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by Bob.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends SupportActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //透明状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //透明导航栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         setupActivityComponent();
     }
 

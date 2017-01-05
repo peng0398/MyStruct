@@ -1,10 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.frogermcs.androiddevmetrics'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.emindsoft.appstore"
@@ -25,6 +23,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile 'com.android.support:design:25.1.0'
+
+    // Fragment manager library
+    compile 'me.yokeyword:fragmentation:0.9.3'
 
     //Dagger 2
     compile 'com.google.dagger:dagger:2.7'

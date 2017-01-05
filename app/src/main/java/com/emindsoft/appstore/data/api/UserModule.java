@@ -2,7 +2,7 @@ package com.emindsoft.appstore.data.api;
 
 import dagger.Module;
 import dagger.Provides;
-import com.emindsoft.appstore.data.UserScope;
+import com.emindsoft.appstore.di.scope.UserScope;
 import com.emindsoft.appstore.data.model.User;
 
 /**

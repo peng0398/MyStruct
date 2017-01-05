@@ -2,7 +2,6 @@ package com.emindsoft.appstore.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,10 +15,10 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.emindsoft.appstore.GithubClientApplication;
+import com.emindsoft.appstore.StoreApplication;
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.data.model.User;
-import com.emindsoft.appstore.ui.activity.module.SplashActivityModule;
+import com.emindsoft.appstore.di.module.SplashActivityModule;
 import com.emindsoft.appstore.ui.activity.presenter.SplashActivityPresenter;
 import com.emindsoft.appstore.utils.AnalyticsManager;
 import rx.Subscription;
@@ -71,7 +70,7 @@ public class SplashActivity extends BaseActivity {
     protected void setupActivityComponent() {
         //Uncomment those lines do measure dependencies creation time
         //Debug.startMethodTracing("SplashTrace");
-        GithubClientApplication.get(this)
+        StoreApplication.get(this)
                 .getAppComponent()
                 .plus(new SplashActivityModule(this))
                 .inject(this);
@@ -84,7 +83,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void showRepositoriesListForUser(User user) {
-        GithubClientApplication.get(this).createUserComponent(user);
+        StoreApplication.get(this).createUserComponent(user);
         startActivity(new Intent(this, RepositoriesListActivity.class));
     }
 

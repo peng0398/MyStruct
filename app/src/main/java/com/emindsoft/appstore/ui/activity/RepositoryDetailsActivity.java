@@ -9,10 +9,10 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.emindsoft.appstore.GithubClientApplication;
+import com.emindsoft.appstore.StoreApplication;
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.data.model.Repository;
-import com.emindsoft.appstore.ui.activity.module.RepositoryDetailsActivityModule;
+import com.emindsoft.appstore.di.module.RepositoryDetailsActivityModule;
 import com.emindsoft.appstore.ui.activity.presenter.RepositoryDetailsActivityPresenter;
 import com.emindsoft.appstore.utils.AnalyticsManager;
 
@@ -56,7 +56,7 @@ public class RepositoryDetailsActivity extends BaseActivity {
 
     @Override
     protected void setupActivityComponent() {
-        GithubClientApplication.get(this).getUserComponent()
+        StoreApplication.get(this).getUserComponent()
                 .plus(new RepositoryDetailsActivityModule(this))
                 .inject(this);
 
