@@ -1,39 +1,48 @@
-package com.emindsoft.appstore.ui.activity.presenter;
+package com.emindsoft.appstore.presenter;
 
-import com.google.common.collect.ImmutableList;
-
+import com.emindsoft.appstore.contract.RepositoriesListContract;
 import com.emindsoft.appstore.data.api.RepositoriesManager;
 import com.emindsoft.appstore.data.model.Repository;
-import com.emindsoft.appstore.ui.activity.RepositoriesListActivity;
 import com.emindsoft.appstore.utils.SimpleObserver;
+import com.google.common.collect.ImmutableList;
 
 /**
  * Created by Bob.
  */
-public class RepositoriesListActivityPresenter {
-    private RepositoriesListActivity repositoriesListActivity;
+
+public class RepositoriesListActivityPresenter implements RepositoriesListContract.Presenter{
+    private RepositoriesListContract.View view;
     private RepositoriesManager repositoriesManager;
 
-    public RepositoriesListActivityPresenter(RepositoriesListActivity repositoriesListActivity,
+    public RepositoriesListActivityPresenter(RepositoriesListContract.View view,
                                              RepositoriesManager repositoriesManager) {
-        this.repositoriesListActivity = repositoriesListActivity;
+        this.view = view;
         this.repositoriesManager = repositoriesManager;
     }
 
     public void loadRepositories() {
-        repositoriesListActivity.showLoading(true);
+        view.showLoading(true);
         repositoriesManager.getUsersRepositories().subscribe(new SimpleObserver<ImmutableList<Repository>>() {
             @Override
             public void onNext(ImmutableList<Repository> repositories) {
-                repositoriesListActivity.showLoading(false);
-                repositoriesListActivity.setRepositories(repositories);
+                view.showLoading(false);
+                view.setRepositories(repositories);
             }
 
             @Override
             public void onError(Throwable e) {
-                repositoriesListActivity.showLoading(false);
+                view.showLoading(false);
             }
         });
     }
 
+    @Override
+    public void subscribe() {
+
+    }
+
+    @Override
+    public void unsubscribe() {
+
+    }
 }

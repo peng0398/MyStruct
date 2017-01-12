@@ -31,4 +31,10 @@
     <string name="image_transition">image_transition</string>
     <string name="press_again_exit">再按一次退出</string>
     <string name="send">发送</string>
+    <string name="user_manager">账号管理</string>
+    <string name="sys_setting">系统设置</string>
+    <string name="support">帮助与反馈</string>
+    <string name="check_update">检查更新</string>
+    <string name="about">关于</string>
+    <string name="emind_appstore">一铭应用商店</string>
 </resources>

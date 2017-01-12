@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#00ac66</color>
     <color name="colorAccent">#fff</color>
     <color name="tab_unselect">#c9c9c9</color>
+    <color name="defaultPagebg">#f5f5f5</color>
 
 </resources>

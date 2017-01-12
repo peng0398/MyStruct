@@ -1,19 +1,18 @@
 package com.emindsoft.appstore.di.component;
 
-import dagger.Subcomponent;
+import com.emindsoft.appstore.di.module.RepositoriesListActivityModule;
 import com.emindsoft.appstore.di.scope.ActivityScope;
 import com.emindsoft.appstore.ui.activity.RepositoriesListActivity;
-import com.emindsoft.appstore.di.module.RepositoriesListActivityModule;
+
+import dagger.Subcomponent;
 
 /**
  * Created by Bob.
  */
 @ActivityScope
-@Subcomponent(
-        modules = RepositoriesListActivityModule.class
-)
+@Subcomponent( modules = RepositoriesListActivityModule.class )
 public interface RepositoriesListActivityComponent {
 
-    RepositoriesListActivity inject(RepositoriesListActivity repositoriesListActivity);
+    void inject(RepositoriesListActivity repositoriesListActivity);
 
 }

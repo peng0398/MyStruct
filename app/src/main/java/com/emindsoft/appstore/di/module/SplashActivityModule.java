@@ -7,7 +7,7 @@ import com.emindsoft.appstore.HeavyLibraryWrapper;
 import com.emindsoft.appstore.data.api.UserManager;
 import com.emindsoft.appstore.di.scope.ActivityScope;
 import com.emindsoft.appstore.ui.activity.SplashActivity;
-import com.emindsoft.appstore.ui.activity.presenter.SplashActivityPresenter;
+import com.emindsoft.appstore.presenter.SplashActivityPresenter;
 import com.emindsoft.appstore.utils.Validator;
 
 /**

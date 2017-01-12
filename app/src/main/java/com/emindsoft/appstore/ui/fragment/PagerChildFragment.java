@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.listener.OnItemClickListener;
 import com.emindsoft.appstore.ui.adapter.PagerAdapter;
-import com.emindsoft.appstore.ui.base.BaseFragment;
+import com.emindsoft.appstore.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,8 +64,8 @@ public class PagerChildFragment extends BaseFragment {
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-                if (getParentFragment() instanceof DiscoverFragment) {
-//                    ((DiscoverFragment) getParentFragment()).start(CycleFragment.newInstance(1));
+                if (getParentFragment() instanceof MainFragment) {
+//                    ((MainFragment) getParentFragment()).start(CycleFragment.newInstance(1));
                 }
             }
         });

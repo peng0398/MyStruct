@@ -9,8 +9,8 @@ import com.emindsoft.appstore.data.model.Repository;
  * Created by Bob.
  */
 
-public abstract class RepositoryViewHolder extends RecyclerView.ViewHolder {
-    public RepositoryViewHolder(View itemView) {
+public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
+    public BaseViewHolder(View itemView) {
         super(itemView);
     }
 

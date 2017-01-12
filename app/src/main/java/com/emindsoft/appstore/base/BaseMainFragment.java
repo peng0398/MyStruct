@@ -1,4 +1,4 @@
-package com.emindsoft.appstore.ui.base;
+package com.emindsoft.appstore.base;
 
 import android.content.Context;
 import android.support.v7.widget.Toolbar;

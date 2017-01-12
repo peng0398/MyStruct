@@ -11,15 +11,15 @@ import android.view.ViewGroup;
 
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.ui.adapter.DiscoverFragmentAdapter;
-import com.emindsoft.appstore.ui.base.BaseMainFragment;
+import com.emindsoft.appstore.base.BaseMainFragment;
 
 /**
  * Created by YoKeyword on 16/2/3.
  */
-public class DiscoverFragment extends BaseMainFragment {
+public class MainFragment extends BaseMainFragment {
 
-    public static DiscoverFragment newInstance() {
-        return new DiscoverFragment();
+    public static MainFragment newInstance() {
+        return new MainFragment();
     }
 
     @Nullable

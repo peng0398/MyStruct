@@ -13,7 +13,7 @@ import com.emindsoft.appstore.StoreApplication;
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.data.model.Repository;
 import com.emindsoft.appstore.di.module.RepositoryDetailsActivityModule;
-import com.emindsoft.appstore.ui.activity.presenter.RepositoryDetailsActivityPresenter;
+import com.emindsoft.appstore.presenter.RepositoryDetailsActivityPresenter;
 import com.emindsoft.appstore.utils.AnalyticsManager;
 
 

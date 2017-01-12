@@ -20,20 +20,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile 'com.android.support:design:25.1.0'
-
     // Fragment manager library
     compile 'me.yokeyword:fragmentation:0.9.3'
-
     //Dagger 2
     compile 'com.google.dagger:dagger:2.7'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.google.auto.factory:auto-factory:1.0-beta3'
-
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.jakewharton.timber:timber:4.3.1'
@@ -46,4 +43,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'com.google.guava:guava:19.0'
+    compile project(path: ':AndroidImageSlider')
+    compile 'com.facebook.fresco:fresco:1.0.0'
 }

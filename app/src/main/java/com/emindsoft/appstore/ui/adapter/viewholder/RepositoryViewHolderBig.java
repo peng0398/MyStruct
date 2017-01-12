@@ -15,7 +15,7 @@ import com.emindsoft.appstore.data.model.Repository;
  * Created by Bob.
  */
 @AutoFactory(implementing = RepositoriesListViewHolderFactory.class)
-public class RepositoryViewHolderBig extends RepositoryViewHolder {
+public class RepositoryViewHolderBig extends BaseViewHolder {
 
     @BindView(R.id.tvName)
     TextView tvName;

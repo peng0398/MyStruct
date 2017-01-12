@@ -5,7 +5,7 @@ import dagger.Provides;
 import com.emindsoft.appstore.data.model.User;
 import com.emindsoft.appstore.di.scope.ActivityScope;
 import com.emindsoft.appstore.ui.activity.RepositoryDetailsActivity;
-import com.emindsoft.appstore.ui.activity.presenter.RepositoryDetailsActivityPresenter;
+import com.emindsoft.appstore.presenter.RepositoryDetailsActivityPresenter;
 
 /**
  * Created by Bob.

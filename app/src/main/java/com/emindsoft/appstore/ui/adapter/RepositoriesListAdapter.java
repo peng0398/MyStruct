@@ -8,24 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.emindsoft.appstore.contract.RepositoriesListContract;
 import com.emindsoft.appstore.data.model.Repository;
-import com.emindsoft.appstore.ui.activity.RepositoriesListActivity;
 import com.emindsoft.appstore.ui.adapter.viewholder.RepositoriesListViewHolderFactory;
-import com.emindsoft.appstore.ui.adapter.viewholder.RepositoryViewHolder;
+import com.emindsoft.appstore.ui.adapter.viewholder.BaseViewHolder;
 
 /**
  * Created by Bob.
  */
 public class RepositoriesListAdapter extends RecyclerView.Adapter {
 
-    private RepositoriesListActivity repositoriesListActivity;
+    private RepositoriesListContract.View view;
     private Map<Integer, RepositoriesListViewHolderFactory> viewHolderFactories;
 
     private final List<Repository> repositories = new ArrayList<>();
 
-    public RepositoriesListAdapter(RepositoriesListActivity repositoriesListActivity,
+    public RepositoriesListAdapter(RepositoriesListContract.View view,
                                    Map<Integer, RepositoriesListViewHolderFactory> viewHolderFactories) {
-        this.repositoriesListActivity = repositoriesListActivity;
+        this.view = view;
         this.viewHolderFactories = viewHolderFactories;
     }
 
@@ -42,12 +42,12 @@ public class RepositoriesListAdapter extends RecyclerView.Adapter {
     }
 
     private void onRepositoryItemClicked(int adapterPosition) {
-        repositoriesListActivity.onRepositoryClick(repositories.get(adapterPosition));
+        view.onRepositoryClick(repositories.get(adapterPosition));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((RepositoryViewHolder) holder).bind(repositories.get(position));
+        ((BaseViewHolder) holder).bind(repositories.get(position));
     }
 
     @Override

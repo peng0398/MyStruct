@@ -9,6 +9,7 @@ import com.emindsoft.appstore.data.api.UserModule;
 import com.emindsoft.appstore.data.model.User;
 import com.emindsoft.appstore.di.component.AppComponent;
 import com.emindsoft.appstore.di.module.AppModule;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 /**
  * Created by Bob.
@@ -25,12 +26,8 @@ import com.emindsoft.appstore.di.module.AppModule;
     @Override
     public void onCreate() {
         super.onCreate();
-//        if (BuildConfig.DEBUG) {
-//            Timber.plant(new Timber.DebugTree());
-//            AndroidDevMetrics.initWith(this);
-//        }
-
         initAppComponent();
+        Fresco.initialize(this);
     }
 
     private void initAppComponent() {

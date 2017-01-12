@@ -1,6 +1,18 @@
 package com.emindsoft.appstore.di.module;
 
+import android.app.Application;
 import android.support.v7.widget.LinearLayoutManager;
+
+import com.emindsoft.appstore.contract.RepositoriesListContract;
+import com.emindsoft.appstore.data.api.RepositoriesManager;
+import com.emindsoft.appstore.data.model.Repository;
+import com.emindsoft.appstore.di.scope.ActivityScope;
+import com.emindsoft.appstore.presenter.RepositoriesListActivityPresenter;
+import com.emindsoft.appstore.ui.adapter.RepositoriesListAdapter;
+import com.emindsoft.appstore.ui.adapter.viewholder.RepositoriesListViewHolderFactory;
+import com.emindsoft.appstore.ui.adapter.viewholder.RepositoryViewHolderBigFactory;
+import com.emindsoft.appstore.ui.adapter.viewholder.RepositoryViewHolderFeaturedFactory;
+import com.emindsoft.appstore.ui.adapter.viewholder.RepositoryViewHolderNormalFactory;
 
 import java.util.Map;
 
@@ -8,51 +20,41 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntKey;
 import dagger.multibindings.IntoMap;
-import com.emindsoft.appstore.data.api.RepositoriesManager;
-import com.emindsoft.appstore.data.model.Repository;
-import com.emindsoft.appstore.di.scope.ActivityScope;
-import com.emindsoft.appstore.ui.activity.RepositoriesListActivity;
-import com.emindsoft.appstore.ui.activity.presenter.RepositoriesListActivityPresenter;
-import com.emindsoft.appstore.ui.adapter.RepositoriesListAdapter;
-import com.emindsoft.appstore.ui.adapter.viewholder.RepositoriesListViewHolderFactory;
-import com.emindsoft.appstore.ui.adapter.viewholder.RepositoryViewHolderBigFactory;
-import com.emindsoft.appstore.ui.adapter.viewholder.RepositoryViewHolderFeaturedFactory;
-import com.emindsoft.appstore.ui.adapter.viewholder.RepositoryViewHolderNormalFactory;
 
 /**
  * Created by Bob.
  */
 @Module
 public class RepositoriesListActivityModule {
-    private RepositoriesListActivity repositoriesListActivity;
+    private RepositoriesListContract.View view;
 
-    public RepositoriesListActivityModule(RepositoriesListActivity repositoriesListActivity) {
-        this.repositoriesListActivity = repositoriesListActivity;
+    public RepositoriesListActivityModule(RepositoriesListContract.View view) {
+        this.view = view;
     }
 
     @Provides
     @ActivityScope
-    RepositoriesListActivity provideRepositoriesListActivity() {
-        return repositoriesListActivity;
+    RepositoriesListContract.View provideRepositoriesListActivity() {
+        return view;
     }
 
     @Provides
     @ActivityScope
     RepositoriesListActivityPresenter provideRepositoriesListActivityPresenter(RepositoriesManager repositoriesManager) {
-        return new RepositoriesListActivityPresenter(repositoriesListActivity, repositoriesManager);
+        return new RepositoriesListActivityPresenter(view, repositoriesManager);
     }
 
     @Provides
     @ActivityScope
-    RepositoriesListAdapter provideRepositoriesListAdapter(RepositoriesListActivity repositoriesListActivity,
+    RepositoriesListAdapter provideRepositoriesListAdapter(RepositoriesListContract.View view,
                                                            Map<Integer, RepositoriesListViewHolderFactory> viewHolderFactories) {
-        return new RepositoriesListAdapter(repositoriesListActivity, viewHolderFactories);
+        return new RepositoriesListAdapter(view, viewHolderFactories);
     }
 
     @Provides
     @ActivityScope
-    LinearLayoutManager provideLinearLayoutManager(RepositoriesListActivity repositoriesListActivity) {
-        return new LinearLayoutManager(repositoriesListActivity);
+    LinearLayoutManager provideLinearLayoutManager(Application application) {
+        return new LinearLayoutManager(application);
     }
 
     @Provides

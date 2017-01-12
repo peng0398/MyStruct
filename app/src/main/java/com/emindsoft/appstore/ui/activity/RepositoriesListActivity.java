@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.emindsoft.appstore.contract.RepositoriesListContract;
 import com.google.common.collect.ImmutableList;
 
 import javax.inject.Inject;
@@ -16,11 +17,11 @@ import com.emindsoft.appstore.StoreApplication;
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.data.model.Repository;
 import com.emindsoft.appstore.di.module.RepositoriesListActivityModule;
-import com.emindsoft.appstore.ui.activity.presenter.RepositoriesListActivityPresenter;
+import com.emindsoft.appstore.presenter.RepositoriesListActivityPresenter;
 import com.emindsoft.appstore.ui.adapter.RepositoriesListAdapter;
 
 
-public class RepositoriesListActivity extends BaseActivity {
+public class RepositoriesListActivity extends BaseActivity implements RepositoriesListContract.View{
     @BindView(R.id.rvRepositories)
     RecyclerView rvRepositories;
     @BindView(R.id.pbLoading)
@@ -54,10 +55,7 @@ public class RepositoriesListActivity extends BaseActivity {
                 .inject(this);
     }
 
-    public void showLoading(boolean loading) {
-        rvRepositories.setVisibility(loading ? View.GONE : View.VISIBLE);
-        pbLoading.setVisibility(loading ? View.VISIBLE : View.GONE);
-    }
+
 
     public void setRepositories(ImmutableList<Repository> repositories) {
         repositoriesListAdapter.updateRepositoriesList(repositories);
@@ -71,5 +69,16 @@ public class RepositoriesListActivity extends BaseActivity {
     public void finish() {
         super.finish();
         StoreApplication.get(this).releaseUserComponent();
+    }
+
+    @Override
+    public void setPresenter(RepositoriesListContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void showLoading(boolean loading) {
+        rvRepositories.setVisibility(loading ? View.GONE : View.VISIBLE);
+        pbLoading.setVisibility(loading ? View.VISIBLE : View.GONE);
     }
 }

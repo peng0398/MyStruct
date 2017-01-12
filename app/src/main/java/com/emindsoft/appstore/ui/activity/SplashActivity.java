@@ -19,7 +19,7 @@ import com.emindsoft.appstore.StoreApplication;
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.data.model.User;
 import com.emindsoft.appstore.di.module.SplashActivityModule;
-import com.emindsoft.appstore.ui.activity.presenter.SplashActivityPresenter;
+import com.emindsoft.appstore.presenter.SplashActivityPresenter;
 import com.emindsoft.appstore.utils.AnalyticsManager;
 import rx.Subscription;
 import rx.functions.Action1;

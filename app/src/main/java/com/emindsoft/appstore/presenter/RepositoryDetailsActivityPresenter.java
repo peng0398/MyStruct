@@ -1,4 +1,4 @@
-package com.emindsoft.appstore.ui.activity.presenter;
+package com.emindsoft.appstore.presenter;
 
 import com.emindsoft.appstore.data.model.User;
 import com.emindsoft.appstore.ui.activity.RepositoryDetailsActivity;

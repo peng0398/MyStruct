@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.ui.activity.BaseActivity;
-import com.emindsoft.appstore.ui.fragment.DiscoverFragment;
+import com.emindsoft.appstore.ui.fragment.MainFragment;
 
 import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.main_activity);
 
         if (savedInstanceState == null) {
-            loadRootFragment(R.id.fl_container, DiscoverFragment.newInstance());
+            loadRootFragment(R.id.fl_container, MainFragment.newInstance());
         }
 
         // 可以监听该Activity下的所有Fragment的18个 生命周期方法
