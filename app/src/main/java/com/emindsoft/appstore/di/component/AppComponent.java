@@ -3,11 +3,14 @@ package com.emindsoft.appstore.di.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import com.emindsoft.appstore.di.module.GithubApiModule;
-import com.emindsoft.appstore.data.api.UserModule;
+
+import com.emindsoft.appstore.di.module.LoginActivityModule;
+import com.emindsoft.appstore.di.module.StoreApiModule;
+import com.emindsoft.appstore.di.module.UserModule;
 import com.emindsoft.appstore.di.module.AppModule;
 import com.emindsoft.appstore.di.module.SplashActivityModule;
 import com.emindsoft.appstore.di.module.WonderfulAppFragmentModule;
+import com.emindsoft.appstore.ui.activity.LoginActivity;
 
 /**
  * Created by Bob.
@@ -16,7 +19,7 @@ import com.emindsoft.appstore.di.module.WonderfulAppFragmentModule;
 @Component(
         modules = {
                 AppModule.class,
-                GithubApiModule.class
+                StoreApiModule.class
         }
 )
 public interface AppComponent {
@@ -27,4 +30,5 @@ public interface AppComponent {
 
     UserComponent plus(UserModule userModule);
 
+    LoginActivityComponent plus(LoginActivityModule module);
 }

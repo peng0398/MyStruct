@@ -64,7 +64,7 @@ public class WonderfulAPPFragment extends BaseFragment implements WonderfulFragm
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StoreApplication.get(getContext())
+        StoreApplication.getAppContext()
                 .getAppComponent()
                 .plus(new WonderfulAppFragmentModule(this))
                 .inject(this);

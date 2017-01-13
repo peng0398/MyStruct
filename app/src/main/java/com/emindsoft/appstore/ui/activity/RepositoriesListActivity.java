@@ -37,10 +37,14 @@ public class RepositoriesListActivity extends BaseActivity implements Repositori
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repositories_list);
         ButterKnife.bind(this);
         setupRepositoriesListView();
         presenter.loadRepositories();
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_repositories_list;
     }
 
     private void setupRepositoriesListView() {
@@ -50,7 +54,7 @@ public class RepositoriesListActivity extends BaseActivity implements Repositori
 
     @Override
     protected void setupActivityComponent() {
-        StoreApplication.get(this).getUserComponent()
+        StoreApplication.getAppContext().getUserComponent()
                 .plus(new RepositoriesListActivityModule(this))
                 .inject(this);
     }
@@ -68,7 +72,7 @@ public class RepositoriesListActivity extends BaseActivity implements Repositori
     @Override
     public void finish() {
         super.finish();
-        StoreApplication.get(this).releaseUserComponent();
+        StoreApplication.getAppContext().releaseUserComponent();
     }
 
     @Override

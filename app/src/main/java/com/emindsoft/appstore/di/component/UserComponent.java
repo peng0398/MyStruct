@@ -1,7 +1,7 @@
 package com.emindsoft.appstore.di.component;
 
 import dagger.Subcomponent;
-import com.emindsoft.appstore.data.api.UserModule;
+import com.emindsoft.appstore.di.module.UserModule;
 import com.emindsoft.appstore.di.scope.UserScope;
 import com.emindsoft.appstore.di.module.RepositoriesListActivityModule;
 import com.emindsoft.appstore.di.module.RepositoryDetailsActivityModule;

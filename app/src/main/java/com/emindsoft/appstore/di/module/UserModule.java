@@ -1,7 +1,10 @@
-package com.emindsoft.appstore.data.api;
+package com.emindsoft.appstore.di.module;
 
 import dagger.Module;
 import dagger.Provides;
+
+import com.emindsoft.appstore.data.api.GithubApiService;
+import com.emindsoft.appstore.data.api.RepositoriesManager;
 import com.emindsoft.appstore.di.scope.UserScope;
 import com.emindsoft.appstore.data.model.User;
 

@@ -12,6 +12,7 @@ import com.emindsoft.appstore.BuildConfig;
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.data.api.GithubApiService;
 import com.emindsoft.appstore.data.api.UserManager;
+import com.emindsoft.appstore.data.api.UserApiService;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -23,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Bob.
  */
 @Module
-public class GithubApiModule {
+public class StoreApiModule {
 
     @Provides
     @Singleton
@@ -47,7 +48,7 @@ public class GithubApiModule {
     public Retrofit provideRestAdapter(Application application, OkHttpClient okHttpClient) {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(okHttpClient)
-                .baseUrl(application.getString(R.string.endpoint))
+                .baseUrl(application.getString(R.string.base_url))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create());
         return builder.build();
@@ -57,6 +58,12 @@ public class GithubApiModule {
     @Singleton
     public GithubApiService provideGithubApiService(Retrofit restAdapter) {
         return restAdapter.create(GithubApiService.class);
+    }
+
+    @Provides
+    @Singleton
+    public UserApiService provideUserApiService(Retrofit retrofit){
+        return retrofit.create(UserApiService.class);
     }
 
     @Provides

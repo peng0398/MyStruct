@@ -18,7 +18,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         fresco:placeholderImage="@android:drawable/sym_def_app_icon"
         fresco:roundAsCircle="true"
         fresco:roundingBorderColor="#fff"

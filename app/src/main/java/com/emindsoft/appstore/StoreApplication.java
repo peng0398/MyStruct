@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.emindsoft.appstore.di.component.DaggerAppComponent;
 import com.emindsoft.appstore.di.component.UserComponent;
-import com.emindsoft.appstore.data.api.UserModule;
+import com.emindsoft.appstore.di.module.UserModule;
 import com.emindsoft.appstore.data.model.User;
 import com.emindsoft.appstore.di.component.AppComponent;
 import com.emindsoft.appstore.di.module.AppModule;
@@ -18,14 +18,16 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 
     private AppComponent appComponent;
     private UserComponent userComponent;
+    private static StoreApplication storeApplication;
 
-    public static StoreApplication get(Context context) {
-        return (StoreApplication) context.getApplicationContext();
+    public static StoreApplication getAppContext() {
+        return storeApplication;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        storeApplication = (StoreApplication) getApplicationContext();
         initAppComponent();
         Fresco.initialize(this);
     }

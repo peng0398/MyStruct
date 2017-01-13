@@ -45,11 +45,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        ButterKnife.bind(this);
-
         analyticsManager.logScreenView(getClass().getName());
-
         textChangeSubscription = RxTextView.textChangeEvents(etUsername).subscribe(new Action1<TextViewTextChangeEvent>() {
             @Override
             public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
@@ -57,6 +53,11 @@ public class SplashActivity extends BaseActivity {
                 etUsername.setError(null);
             }
         });
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_splash;
     }
 
     @Override
@@ -70,7 +71,7 @@ public class SplashActivity extends BaseActivity {
     protected void setupActivityComponent() {
         //Uncomment those lines do measure dependencies creation time
         //Debug.startMethodTracing("SplashTrace");
-        StoreApplication.get(this)
+        StoreApplication.getAppContext()
                 .getAppComponent()
                 .plus(new SplashActivityModule(this))
                 .inject(this);
@@ -83,7 +84,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void showRepositoriesListForUser(User user) {
-        StoreApplication.get(this).createUserComponent(user);
+        StoreApplication.getAppContext().createUserComponent(user);
         startActivity(new Intent(this, RepositoriesListActivity.class));
     }
 

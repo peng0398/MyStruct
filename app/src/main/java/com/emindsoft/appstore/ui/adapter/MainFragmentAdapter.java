@@ -10,10 +10,10 @@ import com.emindsoft.appstore.ui.fragment.WonderfulAPPFragment;
 /**
  * Created by YoKeyword on 16/2/5.
  */
-public class DiscoverFragmentAdapter extends FragmentPagerAdapter {
+public class MainFragmentAdapter extends FragmentPagerAdapter {
     String[] mTitles = new String[]{"精品", "排行", "分类", "管理", "下载"};
 
-    public DiscoverFragmentAdapter(FragmentManager fm) {
+    public MainFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
 

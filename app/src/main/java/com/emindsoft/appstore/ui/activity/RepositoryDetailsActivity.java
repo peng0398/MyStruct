@@ -43,10 +43,7 @@ public class RepositoryDetailsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repository_details);
-        ButterKnife.bind(this);
         analyticsManager.logScreenView(getClass().getName());
-
         repository = getIntent().getParcelableExtra(ARG_REPOSITORY);
         tvRepoName.setText(repository.name);
         tvRepoDetails.setText(repository.url);
@@ -55,8 +52,13 @@ public class RepositoryDetailsActivity extends BaseActivity {
     }
 
     @Override
+    protected int getContentView() {
+        return R.layout.activity_repository_details;
+    }
+
+    @Override
     protected void setupActivityComponent() {
-        StoreApplication.get(this).getUserComponent()
+        StoreApplication.getAppContext().getUserComponent()
                 .plus(new RepositoryDetailsActivityModule(this))
                 .inject(this);
 

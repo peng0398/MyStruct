@@ -11,6 +11,7 @@ import rx.Observable;
 
 /**
  * Created by Bob.
+ * Wonderful fragment api
  */
 public interface WonderfulService {
 

@@ -1,18 +1,21 @@
 package com.emindsoft.appstore.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
+import android.support.design.widget.NavigationView;
+import android.view.View;
 
 import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.ui.activity.BaseActivity;
+import com.emindsoft.appstore.ui.activity.LoginActivity;
 import com.emindsoft.appstore.ui.fragment.MainFragment;
+import com.facebook.drawee.view.SimpleDraweeView;
 
-import me.yokeyword.fragmentation.SupportFragment;
+import butterknife.BindView;
+import butterknife.OnClick;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
-import me.yokeyword.fragmentation.helper.FragmentLifecycleCallbacks;
 
 /**
  * Author: Bob
@@ -21,7 +24,16 @@ import me.yokeyword.fragmentation.helper.FragmentLifecycleCallbacks;
 
 public class MainActivity extends BaseActivity {
 
-    private DrawerLayout mDrawer;
+    private SimpleDraweeView iv_icon;
+
+    @OnClick(R.id.nav_view)
+    void goLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
 
     @Override
     protected void setupActivityComponent() {
@@ -31,26 +43,22 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
-
         if (savedInstanceState == null) {
             loadRootFragment(R.id.fl_container, MainFragment.newInstance());
         }
-
-        // 可以监听该Activity下的所有Fragment的18个 生命周期方法
-        registerFragmentLifecycleCallbacks(new FragmentLifecycleCallbacks() {
-
+        View headerView = navigationView.getHeaderView(0);
+        iv_icon = ((SimpleDraweeView) headerView.findViewById(R.id.iv_icon));
+        iv_icon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFragmentSupportVisible(SupportFragment fragment) {
-                Log.i("MainActivity", "onFragmentSupportVisible--->" + fragment.getClass().getSimpleName());
+            public void onClick(View view) {
+                goLogin();
             }
-
-            @Override
-            public void onFragmentCreated(SupportFragment fragment, Bundle savedInstanceState) {
-                super.onFragmentCreated(fragment, savedInstanceState);
-            }
-            // 省略其余生命周期方法
         });
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.main_activity;
     }
 
     @Override
