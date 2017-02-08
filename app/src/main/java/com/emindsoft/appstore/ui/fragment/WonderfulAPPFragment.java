@@ -1,6 +1,5 @@
 package com.emindsoft.appstore.ui.fragment;
 
-import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,16 +16,12 @@ import com.emindsoft.appstore.R;
 import com.emindsoft.appstore.StoreApplication;
 import com.emindsoft.appstore.base.BaseFragment;
 import com.emindsoft.appstore.contract.WonderfulFragmentContract;
-import com.emindsoft.appstore.data.api.WonderfulService;
 import com.emindsoft.appstore.data.model.AppInfo;
-import com.emindsoft.appstore.di.module.WonderfulAppFragmentModule;
 import com.emindsoft.appstore.presenter.WonderfulFragmentPresenter;
 import com.emindsoft.appstore.ui.adapter.AppListAdapter;
 
 import java.util.HashMap;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,14 +38,8 @@ public class WonderfulAPPFragment extends BaseFragment implements WonderfulFragm
         return new WonderfulAPPFragment();
     }
 
-    @Inject
-    Application application;
 
-    @Inject
-    WonderfulService wonderfulService;
-
-    @Inject
-    WonderfulFragmentPresenter presenter;
+    WonderfulFragmentPresenter presenter = new WonderfulFragmentPresenter(this);
 
     @BindView(R.id.sl_content)
     SliderLayout sl_content;
@@ -64,16 +53,12 @@ public class WonderfulAPPFragment extends BaseFragment implements WonderfulFragm
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StoreApplication.getAppContext()
-                .getAppComponent()
-                .plus(new WonderfulAppFragmentModule(this))
-                .inject(this);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = View.inflate(application, R.layout.wonderful_fragment, null);
+        View view = View.inflate(StoreApplication.getAppContext(), R.layout.wonderful_fragment, null);
         ButterKnife.bind(this, view);
         return view;
     }

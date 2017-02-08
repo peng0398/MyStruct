@@ -7,15 +7,11 @@ import rx.Observable;
 
 /**
  * Author: Bob
- * Date: 2017/1/12.
- * User regist,login,smscode ... api.
+ * Date: 2017/2/8.
  */
-
-public interface UserApiService {
-
+public interface ApiService {
     @GET("account/regist")
     Observable<ResponseBody> regist(@Query("username") String username,
                                     @Query("password") String password,
                                     @Query("confirmPass") String confirmPass);
-
 }

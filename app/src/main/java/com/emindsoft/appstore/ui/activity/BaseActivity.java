@@ -28,7 +28,6 @@ public abstract class BaseActivity extends SupportActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        setupActivityComponent();
         setContentView(R.layout.activity_base);
         View content = View.inflate(this, getContentView(), null);
         ((FrameLayout) findViewById(R.id.fl_content)).addView(content);
@@ -45,5 +44,4 @@ public abstract class BaseActivity extends SupportActivity {
     @LayoutRes
     int getContentView();
 
-    protected abstract void setupActivityComponent();
 }

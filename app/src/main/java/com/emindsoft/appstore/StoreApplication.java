@@ -1,24 +1,26 @@
 package com.emindsoft.appstore;
 
 import android.app.Application;
-import android.content.Context;
 
-import com.emindsoft.appstore.di.component.DaggerAppComponent;
-import com.emindsoft.appstore.di.component.UserComponent;
-import com.emindsoft.appstore.di.module.UserModule;
-import com.emindsoft.appstore.data.model.User;
-import com.emindsoft.appstore.di.component.AppComponent;
-import com.emindsoft.appstore.di.module.AppModule;
+import com.emindsoft.appstore.data.api.ApiService;
 import com.facebook.drawee.backends.pipeline.Fresco;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Bob.
  */
-    public class StoreApplication extends Application {
+public class StoreApplication extends Application {
 
-    private AppComponent appComponent;
-    private UserComponent userComponent;
     private static StoreApplication storeApplication;
+
+    public static ApiService apiService;
 
     public static StoreApplication getAppContext() {
         return storeApplication;
@@ -28,31 +30,29 @@ import com.facebook.drawee.backends.pipeline.Fresco;
     public void onCreate() {
         super.onCreate();
         storeApplication = (StoreApplication) getApplicationContext();
-        initAppComponent();
+        initApiService();
         Fresco.initialize(this);
     }
 
-    private void initAppComponent() {
-        appComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
-                .build();
-    }
+    private void initApiService() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
-    public UserComponent createUserComponent(User user) {
-        userComponent = appComponent.plus(new UserModule(user));
-        return userComponent;
-    }
+        if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            builder.addInterceptor(logging);
+        }
 
-    public void releaseUserComponent() {
-        userComponent = null;
-    }
+        builder.connectTimeout(60 * 1000, TimeUnit.MILLISECONDS)
+                .readTimeout(60 * 1000, TimeUnit.MILLISECONDS);
 
-    public AppComponent getAppComponent() {
-        return appComponent;
-    }
+        OkHttpClient okHttpClient = builder.build();
 
-    public UserComponent getUserComponent() {
-        return userComponent;
+        apiService = new Retrofit.Builder().client(okHttpClient)
+                .baseUrl(getAppContext().getString(R.string.base_url))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create()).build()
+                .create(ApiService.class);
     }
 
 }

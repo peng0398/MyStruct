@@ -5,12 +5,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.emindsoft.appstore.R;
-import com.emindsoft.appstore.StoreApplication;
 import com.emindsoft.appstore.contract.LoginActivityContract;
-import com.emindsoft.appstore.di.module.LoginActivityModule;
 import com.emindsoft.appstore.presenter.LoginActivityPresenter;
-
-import javax.inject.Inject;
 
 import butterknife.OnClick;
 
@@ -20,8 +16,7 @@ import butterknife.OnClick;
  */
 public class LoginActivity extends BaseActivity implements LoginActivityContract.View{
 
-    @Inject
-    LoginActivityPresenter presenter;
+    LoginActivityPresenter presenter = new LoginActivityPresenter(this);
 
     @OnClick(R.id.btn_regist)
     void login(){
@@ -38,14 +33,6 @@ public class LoginActivity extends BaseActivity implements LoginActivityContract
     @Override
     protected int getContentView() {
         return R.layout.activity_login;
-    }
-
-    @Override
-    protected void setupActivityComponent() {
-        StoreApplication.getAppContext()
-                .getAppComponent()
-                .plus(new LoginActivityModule(this))
-                .inject(this);
     }
 
     @Override

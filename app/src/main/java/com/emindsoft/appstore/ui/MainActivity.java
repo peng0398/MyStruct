@@ -36,11 +36,6 @@ public class MainActivity extends BaseActivity {
     NavigationView navigationView;
 
     @Override
-    protected void setupActivityComponent() {
-
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
