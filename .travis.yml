@@ -14,4 +14,4 @@ android:
   - extra-android-support
 
 script:
-- ./gradlew assembleRelease
+- ./gradlew assembleDebug
