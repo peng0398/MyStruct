@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context="com.emindsoft.appstore.ui.activity.RepositoryDetailsActivity">
+        tools:context="com.gold.money.ui.activity.RepositoryDetailsActivity">
 
         <TextView
             android:id="@+id/tvRepoName"
